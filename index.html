@@ -14,12 +14,12 @@
     rel="stylesheet">
   <style>
     :root {
-      --bg: #0e0e10;
-      --bg-soft: #161618;
-      --bg-card: #1a1a1d;
-      --fg: #e8e6e1;
-      --fg-dim: #8a877f;
-      --fg-faint: #4a4844;
+      --bg: #07070d;
+      --bg-soft: #0e0e1a;
+      --bg-card: #121220;
+      --fg: #eceaf5;
+      --fg-dim: #8a88a0;
+      --fg-faint: #3a384a;
       --accent: #e9a84a;
       --accent-dim: #b07e2a;
       --border: rgba(255, 255, 255, 0.06);
@@ -45,13 +45,26 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* Deep space nebula glow */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 30%, rgba(60, 10, 160, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(0, 140, 200, 0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 85% 70%, rgba(0, 200, 120, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     /* Grain texture overlay */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-      opacity: 0.04;
+      opacity: 0.035;
       pointer-events: none;
       z-index: 1000;
       mix-blend-mode: overlay;
@@ -230,6 +243,35 @@
       line-height: 0.95;
       letter-spacing: -0.03em;
       margin-bottom: 2rem;
+      filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.07));
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid rgba(120, 60, 255, 0.35);
+      border-radius: 100px;
+      color: rgba(180, 140, 255, 0.85);
+      background: rgba(70, 15, 180, 0.12);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px rgba(110, 40, 255, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    .hero-badge:hover {
+      border-color: rgba(120, 60, 255, 0.7);
+      background: rgba(70, 15, 180, 0.22);
+      box-shadow: 0 0 18px rgba(110, 40, 255, 0.3);
+      color: rgba(210, 180, 255, 1);
     }
 
     h1.hero-title em {
@@ -327,6 +369,11 @@
     section {
       padding: 6rem 2rem;
       position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      z-index: 100;
     }
 
     .section-header {
@@ -784,21 +831,25 @@
       align-items: center;
       gap: 1rem;
       padding: 1.25rem 2.5rem;
-      background: var(--accent);
-      color: var(--bg);
-      border: none;
+      background: rgba(233, 168, 74, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(233, 168, 74, 0.4);
       border-radius: 100px;
       font-weight: 500;
       font-size: 1.05rem;
       cursor: pointer;
       transition: all 0.3s ease;
       font-family: 'Inter', sans-serif;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 0 30px rgba(233, 168, 74, 0.08), inset 0 1px 0 rgba(255,255,255,0.08);
     }
 
     .contact-btn:hover {
-      background: #f2b858;
+      background: rgba(233, 168, 74, 0.2);
+      border-color: rgba(233, 168, 74, 0.75);
       transform: translateY(-2px);
-      box-shadow: 0 10px 40px rgba(233, 168, 74, 0.2);
+      box-shadow: 0 0 50px rgba(233, 168, 74, 0.25), inset 0 1px 0 rgba(255,255,255,0.12);
     }
 
     .contact-dropdown {
@@ -925,6 +976,14 @@
           sur <strong>OpenShift</strong> et <strong>Kubernetes</strong> — avec une approche <strong>GitOps</strong>,
           beaucoup d'automatisation, et une obsession pour la fiabilité.
         </p>
+        <div class="hero-badges">
+          <span class="hero-badge">DevOps</span>
+          <span class="hero-badge">Kubernetes</span>
+          <span class="hero-badge">Cloud Native</span>
+          <span class="hero-badge">GitOps</span>
+          <span class="hero-badge">Linux</span>
+          <span class="hero-badge">IaC</span>
+        </div>
         <div class="hero-meta">
           <div class="hero-meta-item">
             <span>Localisation</span>
@@ -1423,14 +1482,20 @@
         const hBoost = maxH > 0 ? h / maxH : 0;
         let r, g, b;
         if (t < 0.5) {
+          // electric purple → cyan
           const s = t * 2;
-          r = Math.round(255 - s * 110); g = Math.round(20 + s * 10); b = Math.round(160 + s * 95);
+          r = Math.round(170 - s * 110);
+          g = Math.round(10 + s * 210);
+          b = 255;
         } else {
+          // cyan → bright green
           const s = (t - 0.5) * 2;
-          r = Math.round(145 - s * 130); g = Math.round(30 + s * 100); b = 255;
+          r = Math.round(60 - s * 55);
+          g = Math.round(220 + s * 35);
+          b = Math.round(255 - s * 200);
         }
-        const boost = (gl * 0.75 + hBoost * 0.12) * 95;
-        return [Math.min(255, r + boost), Math.min(255, g + boost * 0.2), Math.min(255, b + boost * 0.15)];
+        const boost = (gl * 0.75 + hBoost * 0.12) * 90;
+        return [Math.min(255, r + boost), Math.min(255, g + boost * 0.3), Math.min(255, b + boost * 0.2)];
       }
 
       function face(pts, fill, stroke, lw) {
@@ -1465,11 +1530,12 @@
           `rgba(${r},${g},${b},${sa * 0.38})`, lw * 0.5);
       }
 
-      const DOTS = Array.from({ length: 90 }, () => ({
+      const DOTS = Array.from({ length: 140 }, () => ({
         x: Math.random(), y: Math.random(),
-        s: 0.4 + Math.random() * 1.4,
-        o: 0.04 + Math.random() * 0.13,
-        c: ['#1a3888','#2a1066','#0a1e55','#1a0a44'][Math.floor(Math.random() * 4)],
+        s: 0.5 + Math.random() * 2.0,
+        o: 0.05 + Math.random() * 0.28,
+        c: ['#ffffff','#c8d8ff','#a0c0ff','#9090ff','#7060cc'][Math.floor(Math.random() * 5)],
+        twinkle: Math.random() * Math.PI * 2,
       }));
       const phases = Array.from({ length: ROWS * COLS }, () => Math.random() * Math.PI * 2);
 
@@ -1477,18 +1543,23 @@
         time += 0.007;
         ctx.clearRect(0, 0, W, H);
 
-        // Background × dots
+        // Star field
         DOTS.forEach(d => {
-          ctx.save(); ctx.globalAlpha = d.o; ctx.fillStyle = d.c;
-          ctx.font = `${d.s * 10}px monospace`;
-          ctx.fillText('×', d.x * W, d.y * H);
+          const twinkle = 0.6 + 0.4 * Math.sin(time * 1.3 + d.twinkle);
+          ctx.save();
+          ctx.globalAlpha = d.o * twinkle;
+          ctx.fillStyle = d.c;
+          ctx.beginPath();
+          ctx.arc(d.x * W, d.y * H, d.s * 0.5, 0, Math.PI * 2);
+          ctx.fill();
           ctx.restore();
         });
 
-        // Ambient glow under cubes
-        const gr = ctx.createRadialGradient(W * 0.5, H * 0.68, 0, W * 0.5, H * 0.68, TW * 9);
-        gr.addColorStop(0, 'rgba(130,30,230,0.14)');
-        gr.addColorStop(0.45, 'rgba(60,10,170,0.05)');
+        // Ambient glow under cubes — electric purple → cyan
+        const gr = ctx.createRadialGradient(W * 0.5, H * 0.68, 0, W * 0.5, H * 0.68, TW * 10);
+        gr.addColorStop(0, 'rgba(80,20,220,0.18)');
+        gr.addColorStop(0.35, 'rgba(0,180,220,0.07)');
+        gr.addColorStop(0.7, 'rgba(0,220,120,0.03)');
         gr.addColorStop(1, 'transparent');
         ctx.fillStyle = gr; ctx.fillRect(0, 0, W, H);
 
