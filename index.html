@@ -941,6 +941,86 @@
       transform: translateY(0);
     }
 
+    /* Project banner with tech icons */
+    .project-banner {
+      height: 80px;
+      margin: -2rem -2rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 1.75rem;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(10,6,28,0.98), var(--banner-accent, rgba(10,6,28,0.98)));
+    }
+
+    .project-banner::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 40%;
+      background: linear-gradient(90deg, transparent, var(--banner-fade, rgba(30,10,80,0.18)));
+      pointer-events: none;
+    }
+
+    .banner-icon {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 5px rgba(255,255,255,0.18));
+      transition: transform 0.2s ease, filter 0.2s ease;
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+
+    .project-card:hover .banner-icon {
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.45));
+      transform: translateY(-2px);
+    }
+
+    /* Skill icon grid */
+    .skill-icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(62px, 1fr));
+      gap: 0.55rem;
+    }
+
+    .skill-icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.8rem 0.3rem 0.65rem;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.22s ease;
+      cursor: default;
+    }
+
+    .skill-icon-item:hover {
+      background: rgba(255,255,255,0.055);
+      border-color: rgba(255,255,255,0.13);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    }
+
+    .skill-icon-item img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+    }
+
+    .skill-icon-item span {
+      font-size: 0.57rem;
+      color: var(--fg-dim);
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.2;
+    }
+
   </style>
 </head>
 
@@ -1152,6 +1232,14 @@
     <div class="projects-grid">
 
       <div class="project-card reveal">
+        <div class="project-banner" style="--banner-accent:rgba(36,150,237,0.13);--banner-fade:rgba(36,100,200,0.22);">
+          <img src="https://cdn.simpleicons.org/jenkins/D24939" alt="Jenkins" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/sonarqube/4E9BCD" alt="SonarQube" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana" class="banner-icon" loading="lazy">
+        </div>
         <div class="project-header">
           <span class="project-icon">PROJECT_01</span>
           <span class="project-arrow">↗</span>
@@ -1174,6 +1262,12 @@
       </div>
 
       <div class="project-card reveal">
+        <div class="project-banner" style="--banner-accent:rgba(239,123,77,0.13);--banner-fade:rgba(200,80,30,0.22);">
+          <img src="https://cdn.simpleicons.org/argo/EF7B4D" alt="ArgoCD" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/helm/0F1689" alt="Helm" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/git/F05032" alt="Git" class="banner-icon" loading="lazy">
+        </div>
         <div class="project-header">
           <span class="project-icon">PROJECT_02</span>
           <span class="project-arrow">↗</span>
@@ -1194,6 +1288,12 @@
       </div>
 
       <div class="project-card reveal">
+        <div class="project-banner" style="--banner-accent:rgba(109,179,63,0.13);--banner-fade:rgba(60,150,30,0.22);">
+          <img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="GitHub Actions" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/spring/6DB33F" alt="Spring Boot" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/apachemaven/C71A36" alt="Maven" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" class="banner-icon" loading="lazy">
+        </div>
         <div class="project-header">
           <span class="project-icon">PROJECT_03</span>
           <span class="project-arrow">↗</span>
@@ -1212,6 +1312,12 @@
       </div>
 
       <div class="project-card reveal">
+        <div class="project-banner" style="--banner-accent:rgba(238,0,0,0.1);--banner-fade:rgba(180,0,0,0.18);">
+          <img src="https://cdn.simpleicons.org/redhatopenshift/EE0000" alt="OpenShift" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/docusaurus/3ECC5F" alt="Docusaurus" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/argo/EF7B4D" alt="ArgoCD" class="banner-icon" loading="lazy">
+        </div>
         <div class="project-header">
           <span class="project-icon">PROJECT_04</span>
           <span class="project-arrow">↗</span>
@@ -1245,88 +1351,187 @@
 
       <div class="skill-category reveal">
         <h3>// CI/CD</h3>
-        <div class="skill-list">
-          <span class="skill-chip">GitLab CI</span>
-          <span class="skill-chip">Jenkins</span>
-          <span class="skill-chip">GitHub Actions</span>
-          <span class="skill-chip">Bash</span>
+        <div class="skill-icon-grid">
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/gitlab/FC6D26" alt="GitLab CI" loading="lazy">
+            <span>GitLab CI</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/jenkins/D24939" alt="Jenkins" loading="lazy">
+            <span>Jenkins</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="GH Actions" loading="lazy">
+            <span>GH Actions</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/gnubash/4EAA25" alt="Bash" loading="lazy">
+            <span>Bash</span>
+          </div>
         </div>
       </div>
 
       <div class="skill-category reveal">
         <h3>// Orchestration</h3>
-        <div class="skill-list">
-          <span class="skill-chip">Kubernetes</span>
-          <span class="skill-chip">OpenShift</span>
-          <span class="skill-chip">Docker</span>
-          <span class="skill-chip">Helm</span>
+        <div class="skill-icon-grid">
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes" loading="lazy">
+            <span>Kubernetes</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/redhatopenshift/EE0000" alt="OpenShift" loading="lazy">
+            <span>OpenShift</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" loading="lazy">
+            <span>Docker</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/helm/0F1689" alt="Helm" loading="lazy">
+            <span>Helm</span>
+          </div>
         </div>
       </div>
 
       <div class="skill-category reveal">
         <h3>// GitOps & IaC</h3>
-        <div class="skill-list">
-          <span class="skill-chip">ArgoCD</span>
-          <span class="skill-chip">Terraform</span>
-          <span class="skill-chip">Ansible</span>
+        <div class="skill-icon-grid">
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/argo/EF7B4D" alt="ArgoCD" loading="lazy">
+            <span>ArgoCD</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform" loading="lazy">
+            <span>Terraform</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/ansible/EE0000" alt="Ansible" loading="lazy">
+            <span>Ansible</span>
+          </div>
         </div>
       </div>
 
       <div class="skill-category reveal">
         <h3>// Cloud</h3>
-        <div class="skill-list">
-          <span class="skill-chip">AWS</span>
-          <span class="skill-chip">Azure</span>
-          <span class="skill-chip">GCP</span>
+        <div class="skill-icon-grid">
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/amazonaws/FF9900" alt="AWS" loading="lazy">
+            <span>AWS</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/microsoftazure/0078D4" alt="Azure" loading="lazy">
+            <span>Azure</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="GCP" loading="lazy">
+            <span>GCP</span>
+          </div>
         </div>
       </div>
 
       <div class="skill-category reveal">
         <h3>// Observabilité</h3>
-        <div class="skill-list">
-          <span class="skill-chip">Prometheus</span>
-          <span class="skill-chip">Grafana</span>
+        <div class="skill-icon-grid">
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus" loading="lazy">
+            <span>Prometheus</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana" loading="lazy">
+            <span>Grafana</span>
+          </div>
         </div>
       </div>
 
       <div class="skill-category reveal">
         <h3>// Virtualisation</h3>
-        <div class="skill-list">
-          <span class="skill-chip">QEMU/KVM</span>
-          <span class="skill-chip">VMware</span>
-          <span class="skill-chip">VirtualBox</span>
+        <div class="skill-icon-grid">
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/qemu/FF6600" alt="QEMU/KVM" loading="lazy">
+            <span>QEMU/KVM</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/vmware/607078" alt="VMware" loading="lazy">
+            <span>VMware</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/virtualbox/183A61" alt="VirtualBox" loading="lazy">
+            <span>VirtualBox</span>
+          </div>
         </div>
       </div>
 
       <div class="skill-category reveal">
         <h3>// Systèmes</h3>
-        <div class="skill-list">
-          <span class="skill-chip">Linux (RHEL, Ubuntu, Debian)</span>
-          <span class="skill-chip">Windows Server</span>
+        <div class="skill-icon-grid">
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux" loading="lazy">
+            <span>Linux</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/redhat/EE0000" alt="RHEL" loading="lazy">
+            <span>RHEL</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/ubuntu/E95420" alt="Ubuntu" loading="lazy">
+            <span>Ubuntu</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/debian/A81D33" alt="Debian" loading="lazy">
+            <span>Debian</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/windows/0078D4" alt="Windows Server" loading="lazy">
+            <span>Windows</span>
+          </div>
         </div>
       </div>
 
       <div class="skill-category reveal">
         <h3>// Dev & Scripts</h3>
-        <div class="skill-list">
-          <span class="skill-chip">Python</span>
-          <span class="skill-chip">Bash</span>
-          <span class="skill-chip">PowerShell</span>
-          <span class="skill-chip">YAML</span>
-          <span class="skill-chip">JavaScript</span>
-          <span class="skill-chip">Dockerfile</span>
+        <div class="skill-icon-grid">
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python" loading="lazy">
+            <span>Python</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/gnubash/4EAA25" alt="Bash" loading="lazy">
+            <span>Bash</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/powershell/5391FE" alt="PowerShell" loading="lazy">
+            <span>PowerShell</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" loading="lazy">
+            <span>JavaScript</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/git/F05032" alt="Git" loading="lazy">
+            <span>Git</span>
+          </div>
         </div>
       </div>
 
       <div class="skill-category reveal">
         <h3>// Réseaux & Sécurité</h3>
-        <div class="skill-list">
-          <span class="skill-chip">VLAN / VPN</span>
-          <span class="skill-chip">pfSense</span>
-          <span class="skill-chip">Fortinet</span>
-          <span class="skill-chip">IDS/IPS</span>
-          <span class="skill-chip">Wireshark</span>
-          <span class="skill-chip">DNS/DHCP</span>
+        <div class="skill-icon-grid">
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/fortinet/EE3124" alt="Fortinet" loading="lazy">
+            <span>Fortinet</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/wireshark/1679A7" alt="Wireshark" loading="lazy">
+            <span>Wireshark</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/cisco/1BA0D7" alt="Cisco" loading="lazy">
+            <span>Cisco</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/openvpn/EA7E20" alt="VPN" loading="lazy">
+            <span>OpenVPN</span>
+          </div>
         </div>
       </div>
 
