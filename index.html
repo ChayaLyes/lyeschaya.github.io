@@ -164,8 +164,26 @@
       margin: 0 auto;
       width: 100%;
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-canvas-wrap { display: none; }
+    }
+
+    .hero-canvas-wrap {
+      position: relative;
+      height: 500px;
+    }
+
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
     }
 
     .hero-terminal {
@@ -859,18 +877,6 @@
       transform: translateY(0);
     }
 
-    /* Accent glow in hero */
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 20%;
-      right: -10%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(233, 168, 74, 0.08), transparent 60%);
-      pointer-events: none;
-      z-index: -1;
-    }
   </style>
 </head>
 
@@ -924,6 +930,9 @@
             <span>CDI — Sept. 2026</span>
           </div>
         </div>
+      </div>
+      <div class="hero-canvas-wrap">
+        <canvas id="heroCanvas"></canvas>
       </div>
     </div>
   </section>
@@ -1355,6 +1364,137 @@
     }
 
     setInterval(typeCommand, 4000);
+
+    // ── ISOMETRIC CUBES ──
+    (function () {
+      const canvas = document.getElementById('heroCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W, H, TW, TH, TD;
+      let time = 0;
+      const mouse = { x: -9999, y: -9999 };
+
+      const GRID = [
+        [0, 0, 1, 2, 1],
+        [0, 1, 2, 3, 2],
+        [1, 2, 3, 4, 3],
+        [1, 2, 3, 3, 2],
+        [0, 1, 2, 2, 1],
+      ];
+      const ROWS = GRID.length, COLS = GRID[0].length;
+
+      function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+        const s = Math.min(W, H) / 420;
+        TW = 44 * s; TH = 24 * s; TD = 40 * s;
+      }
+
+      function proj(gx, gy, gz) {
+        return {
+          x: W * 0.5 + (gx - gy) * TW,
+          y: H * 0.62 + (gx + gy) * TH - gz * TD
+        };
+      }
+
+      function glow(gx, gy, gz) {
+        const c = proj(gx + 0.5, gy + 0.5, gz);
+        const d = Math.hypot(mouse.x - c.x, mouse.y - c.y);
+        return Math.max(0, 1 - d / (TW * 5));
+      }
+
+      function edgeColor(gx, gy, gl) {
+        const t = (gx + gy) / (COLS + ROWS - 2);
+        const r = Math.round(220 * (1 - t) + gl * 255 * 0.6);
+        const g2 = Math.round(20 + gl * 60);
+        const b = Math.round(80 + t * 175 + gl * 80);
+        const a = 0.25 + gl * 0.75;
+        return `rgba(${Math.min(r,255)},${g2},${Math.min(b,255)},${a})`;
+      }
+
+      function quad(pts, fill, stroke, lw) {
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+        for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
+        ctx.closePath();
+        if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+        if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw; ctx.stroke(); }
+      }
+
+      function drawCube(gx, gy, stackH, fz) {
+        for (let h = 0; h < stackH; h++) {
+          const z = h + fz;
+          const gl = glow(gx, gy, z + 1);
+          const ec = edgeColor(gx, gy, gl);
+          const lw = 1.2 + gl * 2.5;
+          const p = (dx, dy, dz) => proj(gx + dx, gy + dy, z + dz);
+          quad([p(0,0,1), p(1,0,1), p(1,1,1), p(0,1,1)], 'rgba(10,8,20,0.92)', ec, lw);
+          quad([p(0,0,0), p(0,0,1), p(0,1,1), p(0,1,0)], 'rgba(5,4,12,0.95)', ec, lw * 0.65);
+          quad([p(0,1,0), p(0,1,1), p(1,1,1), p(1,1,0)], 'rgba(4,3,10,0.95)', ec, lw * 0.45);
+        }
+      }
+
+      // Glow pool under cubes
+      function drawGlowPool() {
+        const cx = W * 0.5 + (2 - 2) * TW;
+        const cy = H * 0.62 + (2 + 2) * TH;
+        const gr = ctx.createRadialGradient(cx, cy, 0, cx, cy, TW * 6);
+        gr.addColorStop(0, 'rgba(120,40,200,0.18)');
+        gr.addColorStop(0.5, 'rgba(60,20,160,0.08)');
+        gr.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = gr;
+        ctx.fillRect(0, 0, W, H);
+      }
+
+      // Background dots
+      const DOTS = Array.from({ length: 70 }, () => ({
+        x: Math.random(), y: Math.random(),
+        s: 0.5 + Math.random() * 1.2,
+        o: 0.05 + Math.random() * 0.18,
+        c: Math.random() > 0.5 ? '#1a3a8a' : '#3a1a7a',
+      }));
+
+      function drawDots() {
+        DOTS.forEach(d => {
+          ctx.save();
+          ctx.globalAlpha = d.o;
+          ctx.fillStyle = d.c;
+          ctx.font = `${d.s * 9}px monospace`;
+          ctx.fillText('×', d.x * W, d.y * H);
+          ctx.restore();
+        });
+      }
+
+      function render() {
+        time += 0.008;
+        ctx.clearRect(0, 0, W, H);
+        drawDots();
+        drawGlowPool();
+
+        const cubes = [];
+        for (let gy = 0; gy < ROWS; gy++)
+          for (let gx = 0; gx < COLS; gx++)
+            if (GRID[gy][gx] > 0) cubes.push({ gx, gy, h: GRID[gy][gx] });
+        cubes.sort((a, b) => (a.gx + a.gy) - (b.gx + b.gy));
+
+        cubes.forEach(({ gx, gy, h }) => {
+          const phase = gx * 1.1 + gy * 0.7;
+          drawCube(gx, gy, h, Math.sin(time + phase) * 0.12);
+        });
+
+        requestAnimationFrame(render);
+      }
+
+      canvas.addEventListener('mousemove', e => {
+        const r = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - r.left;
+        mouse.y = e.clientY - r.top;
+      });
+      canvas.addEventListener('mouseleave', () => { mouse.x = mouse.y = -9999; });
+      window.addEventListener('resize', resize);
+      resize();
+      render();
+    })();
 
     // Contact dropdown
     const contactBtn = document.getElementById('contactBtn');
