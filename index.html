@@ -660,6 +660,45 @@
       line-height: 1.55;
     }
 
+    /* Architecture layers inside project card */
+    .project-arch {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 1rem 0;
+      padding: 0.9rem 1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .arch-layer {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .arch-layer-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.66rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      min-width: 140px;
+      flex-shrink: 0;
+    }
+    .arch-layer-icons {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .arch-layer-icons img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 4px rgba(34,153,255,0.2));
+      transition: transform 0.2s;
+    }
+    .arch-layer-icons img:hover { transform: scale(1.25); }
+
     .project-tags {
       display: flex;
       flex-wrap: wrap;
@@ -1547,33 +1586,103 @@
       </div>
 
       <div class="project-card reveal">
-        <div class="project-banner" style="--banner-accent:rgba(50,108,229,0.16);--banner-fade:rgba(30,70,200,0.26);">
-          <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="k3s" class="banner-icon" loading="lazy">
-          <img src="https://cdn.simpleicons.org/argo/EF7B4D" alt="ArgoCD" class="banner-icon" loading="lazy">
+        <div class="project-banner" style="--banner-accent:rgba(50,108,229,0.18);--banner-fade:rgba(30,70,200,0.28);">
           <img src="https://cdn.simpleicons.org/backstage/9BF0E1" alt="Backstage" class="banner-icon" loading="lazy">
-          <img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus" class="banner-icon" loading="lazy">
-          <img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/argo/EF7B4D" alt="ArgoCD" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="k3s" class="banner-icon" loading="lazy">
           <img src="https://cdn.simpleicons.org/cilium/F8C517" alt="Cilium" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/vault/FFEC6E" alt="Vault" class="banner-icon" loading="lazy">
         </div>
         <div class="project-header">
           <span class="project-icon">PROJECT_05</span>
           <span class="project-arrow">↗</span>
         </div>
-        <h3 class="project-title">Homelab Platform Engineering — k3s</h3>
-        <p class="project-desc">
-          Architecture DevOps complète sur cluster k3s local : portail développeur Backstage,
-          GitOps (ArgoCD + Atlantis), observabilité full-stack (Prometheus, Grafana, Loki, OpenTelemetry),
-          sécurité zero-trust eBPF (Cilium), FinOps (Kubecost), Vault, SOPS, OPA.
-        </p>
+        <h3 class="project-title">Homelab Platform Engineering — k3s Full Stack</h3>
+
+        <!-- Architecture layers -->
+        <div class="project-arch">
+          <div class="arch-layer">
+            <span class="arch-layer-label">// Portail développeur</span>
+            <div class="arch-layer-icons">
+              <img src="https://cdn.simpleicons.org/backstage/9BF0E1" title="Backstage" loading="lazy">
+            </div>
+          </div>
+          <div class="arch-layer">
+            <span class="arch-layer-label">// Source control</span>
+            <div class="arch-layer-icons">
+              <img src="https://cdn.simpleicons.org/github/ffffff" title="GitHub" loading="lazy">
+              <img src="https://cdn.simpleicons.org/gitlab/FC6D26" title="GitLab" loading="lazy">
+            </div>
+          </div>
+          <div class="arch-layer">
+            <span class="arch-layer-label">// CI Pipeline</span>
+            <div class="arch-layer-icons">
+              <img src="https://cdn.simpleicons.org/jenkins/D24939" title="Jenkins" loading="lazy">
+              <img src="https://cdn.simpleicons.org/githubactions/2088FF" title="GitHub Actions" loading="lazy">
+              <img src="https://cdn.simpleicons.org/trivy/1DA7CE" title="Trivy Scan" loading="lazy">
+              <img src="https://cdn.simpleicons.org/podman/892CA0" title="Podman Build" loading="lazy">
+            </div>
+          </div>
+          <div class="arch-layer">
+            <span class="arch-layer-label">// Container Registry</span>
+            <div class="arch-layer-icons">
+              <img src="https://cdn.simpleicons.org/podman/892CA0" title="Podman" loading="lazy">
+              <img src="https://cdn.simpleicons.org/github/ffffff" title="GHCR" loading="lazy">
+            </div>
+          </div>
+          <div class="arch-layer">
+            <span class="arch-layer-label">// IaC</span>
+            <div class="arch-layer-icons">
+              <img src="https://cdn.simpleicons.org/terraform/7B42BC" title="Terraform" loading="lazy">
+              <img src="https://cdn.simpleicons.org/ansible/EE0000" title="Ansible" loading="lazy">
+            </div>
+          </div>
+          <div class="arch-layer">
+            <span class="arch-layer-label">// GitOps</span>
+            <div class="arch-layer-icons">
+              <img src="https://cdn.simpleicons.org/argo/EF7B4D" title="ArgoCD" loading="lazy">
+              <img src="https://cdn.simpleicons.org/helm/0F1689" title="Atlantis / Helm" loading="lazy">
+            </div>
+          </div>
+          <div class="arch-layer">
+            <span class="arch-layer-label">// Cluster k3s</span>
+            <div class="arch-layer-icons">
+              <img src="https://cdn.simpleicons.org/kubernetes/326CE5" title="k3s" loading="lazy">
+              <img src="https://cdn.simpleicons.org/cilium/F8C517" title="Cilium eBPF" loading="lazy">
+            </div>
+          </div>
+          <div class="arch-layer">
+            <span class="arch-layer-label">// Observabilité</span>
+            <div class="arch-layer-icons">
+              <img src="https://cdn.simpleicons.org/prometheus/E6522C" title="Prometheus" loading="lazy">
+              <img src="https://cdn.simpleicons.org/grafana/F46800" title="Grafana" loading="lazy">
+              <img src="https://cdn.simpleicons.org/loki/F5A623" title="Loki" loading="lazy">
+              <img src="https://cdn.simpleicons.org/opentelemetry/F5A623" title="OpenTelemetry" loading="lazy">
+            </div>
+          </div>
+          <div class="arch-layer">
+            <span class="arch-layer-label">// Sécurité</span>
+            <div class="arch-layer-icons">
+              <img src="https://cdn.simpleicons.org/vault/FFEC6E" title="Vault" loading="lazy">
+              <img src="https://cdn.simpleicons.org/trivy/1DA7CE" title="Trivy" loading="lazy">
+            </div>
+          </div>
+        </div>
+
         <div class="project-tags">
+          <span class="project-tag">Backstage</span>
           <span class="project-tag">k3s</span>
           <span class="project-tag">ArgoCD</span>
-          <span class="project-tag">Backstage</span>
-          <span class="project-tag">Cilium</span>
+          <span class="project-tag">Atlantis</span>
+          <span class="project-tag">Cilium / eBPF</span>
           <span class="project-tag">Terraform</span>
+          <span class="project-tag">Ansible</span>
           <span class="project-tag">Loki</span>
+          <span class="project-tag">OpenTelemetry</span>
           <span class="project-tag">Vault</span>
-          <span class="project-tag">OPA</span>
+          <span class="project-tag">Kubecost</span>
+          <span class="project-tag">OPA / Gatekeeper</span>
         </div>
       </div>
 
@@ -2583,13 +2692,14 @@
       const body = [
         'Bonjour Lyes,',
         '',
-        msg || 'Je souhaite vous contacter au sujet d'une opportunité DevOps.',
+        msg || "Je souhaite vous contacter au sujet d’une opportunité DevOps.",
         '',
         '-- ',
         name || 'Votre nom'
       ].join('\n');
       const url = 'https://mail.google.com/mail/?view=cm'
         + '&to=' + encodeURIComponent('chayailyes@gmail.com')
+        + '&cc=' + encodeURIComponent('chayailyes@gmail.com')
         + '&su=' + encodeURIComponent(subj)
         + '&body=' + encodeURIComponent(body);
       window.open(url, '_blank', 'noopener');
