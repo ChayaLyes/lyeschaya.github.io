@@ -774,6 +774,11 @@
       gap: 0.4rem;
     }
 
+    .skill-icon-chip-row {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      grid-column: 1 / -1; margin-top: 0.25rem;
+    }
+
     .skill-chip {
       font-size: 0.82rem;
       color: var(--fg);
@@ -1195,22 +1200,22 @@
         <div class="hero-terminal">whoami<span class="cursor"></span></div>
         <h1 class="hero-title">
           Lyes <em>Chaya</em>,<br>
-          ingénieur DevOps<br>
-          & Cloud Native.
+          DevOps & Platform<br>
+          Engineer.
         </h1>
-        <div class="hero-cloud-tagline">CLOUD-NATIVE &nbsp;·&nbsp; GITOPS &nbsp;·&nbsp; KUBERNETES &nbsp;·&nbsp; IaC</div>
+        <div class="hero-cloud-tagline">KUBERNETES &nbsp;·&nbsp; GITOPS &nbsp;·&nbsp; eBPF &nbsp;·&nbsp; MLOps &nbsp;·&nbsp; IaC</div>
         <p class="hero-tagline">
-          Je conçois et déploie des infrastructures <strong>cloud-native</strong>
-          sur <strong>OpenShift</strong> et <strong>Kubernetes</strong> — GitOps,
-          automatisation bout-en-bout, observabilité complète, et une obsession pour la fiabilité.
+          Je conçois des plateformes <strong>cloud-native</strong> sur <strong>OpenShift</strong>
+          et <strong>Kubernetes</strong> — GitOps, DevSecOps, observabilité full-stack,
+          sécurité <strong>eBPF</strong> et automatisation bout-en-bout.
         </p>
         <div class="hero-badges">
-          <span class="hero-badge">DevOps</span>
+          <span class="hero-badge">Platform Engineer</span>
           <span class="hero-badge">Kubernetes</span>
-          <span class="hero-badge">Cloud Native</span>
           <span class="hero-badge">GitOps</span>
-          <span class="hero-badge">Linux</span>
-          <span class="hero-badge">IaC</span>
+          <span class="hero-badge">DevSecOps</span>
+          <span class="hero-badge">eBPF</span>
+          <span class="hero-badge">MLOps</span>
         </div>
         <div class="hero-meta">
           <div class="hero-meta-item">
@@ -1263,32 +1268,30 @@
       <div class="about-grid">
         <div class="about-text reveal">
           <p>
-            Étudiant en <strong>Master 2 Cloud, Réseaux et Sécurité</strong> à Sorbonne Université (en alternance),
-            je complète actuellement un stage de 6 mois chez <strong>Neutron IT</strong>, un cabinet de conseil parisien
-            spécialisé en OpenShift et Kubernetes.
+            Étudiant en <strong>Master 2 Informatique (Cloud, Réseaux et Sécurité)</strong> à Sorbonne Université,
+            je réalise actuellement un stage chez <strong>Neutron IT</strong>, cabinet de conseil parisien
+            spécialisé en OpenShift & Kubernetes. Je travaille sur des plateformes cloud-native autour de
+            <strong>Kubernetes/OpenShift</strong>, <strong>GitOps (ArgoCD)</strong>, CI/CD et de l'automatisation d'infrastructures.
           </p>
           <p>
-            Au quotidien, je travaille sur l'<strong>administration de clusters OpenShift</strong>, le déploiement
-            d'applications via <strong>ArgoCD</strong> en mode GitOps multi-clusters, la conteneurisation
-            et l'observabilité (Prometheus / Grafana). J'ai également pris en charge la conception
-            d'une <strong>formation technique OpenShift</strong> destinée aux équipes internes, construite
-            autour d'exercices pratiques et d'un site de documentation en ligne.
+            Je développe également des projets en <strong>DevSecOps</strong> (eBPF, Cilium/Tetragon, Trivy, cosign),
+            <strong>MLOps</strong> (MLflow, déploiement canary, drift detection) et <strong>FinOps</strong> (Kubecost/OpenCost)
+            pour renforcer mon expertise en ingénierie de plateforme.
           </p>
           <p>
-            Mon parcours initial en télécommunications et réseaux m'a donné une base solide en
-            <strong>administration système Linux</strong>, en architecture réseau et en sécurité —
-            une fondation que je fais évoluer aujourd'hui vers les pratiques
-            cloud-native et l'ingénierie de plateforme.
+            Mon parcours en télécommunications et réseaux m'a donné une base solide en
+            <strong>administration système Linux</strong>, architecture réseau et sécurité —
+            que j'étends aujourd'hui vers l'ingénierie de plateforme cloud-native.
           </p>
           <p>
-            Je recherche activement un <strong>CDI</strong> en DevOps, Cloud ou ingénierie des systèmes,
-            à partir de septembre 2026.
+            Je recherche un <strong>CDI</strong> en tant que <strong>DevOps Engineer</strong>,
+            <strong>Platform Engineer</strong> ou <strong>Cloud Engineer</strong> à partir de septembre 2026.
           </p>
         </div>
         <div class="about-sidebar reveal">
           <div><span class="key">nom</span><span class="val">Lyes Chaya</span></div>
-          <div><span class="key">rôle</span><span class="val">DevOps / Cloud Engineer</span></div>
-          <div><span class="key">niveau</span><span class="val">Junior / Alternant</span></div>
+          <div><span class="key">rôle</span><span class="val">DevOps & Platform Engineer</span></div>
+          <div><span class="key">niveau</span><span class="val">Junior — CDI</span></div>
           <div><span class="key">dispo</span><span class="val">Septembre 2026</span></div>
           <div><span class="key">contrat</span><span class="val">CDI</span></div>
           <div><span class="key">mobilité</span><span class="val">IDF + remote</span></div>
@@ -1319,10 +1322,12 @@
           <ul class="timeline-list">
             <li>Administration de clusters OpenShift Single Node (SNO) en environnement GPU</li>
             <li>Déploiement GitOps avec ArgoCD sur des environnements multi-clusters</li>
-            <li>Conteneurisation Docker & orchestration Kubernetes</li>
-            <li>Mise en place de la supervision (Prometheus, Grafana)</li>
-            <li>Automatisation CI/CD et gestion des workloads</li>
-            <li>Conception d'une formation OpenShift (Docusaurus + GitHub Pages)</li>
+            <li>Conteneurisation Docker & orchestration Kubernetes, CI/CD et gestion des workloads</li>
+            <li>Mise en place de la supervision complète (Prometheus, Grafana)</li>
+            <li>Conception d'un pipeline Computer Vision (YOLO) : annotation Label Studio, stockage MinIO, entraînement sur workbench RHOAI (GPU)</li>
+            <li>Déploiement de modèles sur edge device (Jetson Orin Nano) avec gestion de flotte via FlightCtl</li>
+            <li>Développement d'une interface web Gradio pour le pipeline ML (import datasets, lancement entraînements)</li>
+            <li>Conception de modules de formation OpenShift (ConfigMaps, Jobs, DaemonSets) en structure GitOps</li>
           </ul>
         </div>
 
@@ -1504,10 +1509,10 @@
         <div class="project-banner" style="--banner-accent:rgba(50,108,229,0.16);--banner-fade:rgba(30,70,200,0.26);">
           <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="k3s" class="banner-icon" loading="lazy">
           <img src="https://cdn.simpleicons.org/argo/EF7B4D" alt="ArgoCD" class="banner-icon" loading="lazy">
-          <img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform" class="banner-icon" loading="lazy">
-          <img src="https://cdn.simpleicons.org/ansible/EE0000" alt="Ansible" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/backstage/9BF0E1" alt="Backstage" class="banner-icon" loading="lazy">
           <img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus" class="banner-icon" loading="lazy">
           <img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/cilium/F8C517" alt="Cilium" class="banner-icon" loading="lazy">
         </div>
         <div class="project-header">
           <span class="project-icon">PROJECT_05</span>
@@ -1515,20 +1520,97 @@
         </div>
         <h3 class="project-title">Homelab Platform Engineering — k3s</h3>
         <p class="project-desc">
-          Architecture DevOps complète sur cluster k3s local : GitOps multi-outils
-          (ArgoCD + Atlantis), portail développeur Backstage, observabilité full-stack
-          (Prometheus, Grafana, Loki, OpenTelemetry, Kubecost), sécurité (Vault, SOPS, Cosign, Trivy, OPA).
+          Architecture DevOps complète sur cluster k3s local : portail développeur Backstage,
+          GitOps (ArgoCD + Atlantis), observabilité full-stack (Prometheus, Grafana, Loki, OpenTelemetry),
+          sécurité zero-trust eBPF (Cilium), FinOps (Kubecost), Vault, SOPS, OPA.
         </p>
         <div class="project-tags">
           <span class="project-tag">k3s</span>
           <span class="project-tag">ArgoCD</span>
-          <span class="project-tag">Atlantis</span>
           <span class="project-tag">Backstage</span>
           <span class="project-tag">Cilium</span>
           <span class="project-tag">Terraform</span>
-          <span class="project-tag">Ansible</span>
           <span class="project-tag">Loki</span>
           <span class="project-tag">Vault</span>
+          <span class="project-tag">OPA</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-banner" style="--banner-accent:rgba(1,148,226,0.15);--banner-fade:rgba(0,100,180,0.25);">
+          <img src="https://cdn.simpleicons.org/mlflow/0194E2" alt="MLflow" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana" class="banner-icon" loading="lazy">
+        </div>
+        <div class="project-header">
+          <span class="project-icon">PROJECT_06</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">Plateforme MLOps — MLflow & Kubernetes</h3>
+        <p class="project-desc">
+          Tracking d'expérimentations et registre de modèles ML (MLflow), déploiement canary
+          sur Kubernetes et détection automatique de drift des modèles en production.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">MLflow</span>
+          <span class="project-tag">Kubernetes</span>
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Canary Deploy</span>
+          <span class="project-tag">Drift Detection</span>
+          <span class="project-tag">MinIO</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-banner" style="--banner-accent:rgba(248,197,23,0.12);--banner-fade:rgba(200,150,0,0.20);">
+          <img src="https://cdn.simpleicons.org/cilium/F8C517" alt="Cilium" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/trivy/1DA7CE" alt="Trivy" class="banner-icon" loading="lazy">
+        </div>
+        <div class="project-header">
+          <span class="project-icon">PROJECT_07</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">Sécurité Zero-Trust eBPF — Cilium & Tetragon</h3>
+        <p class="project-desc">
+          Observabilité et politiques réseau au niveau kernel avec Cilium/Tetragon — sans overhead,
+          sans sidecar. Visibilité complète du trafic inter-services et enforcement zero-trust sur Kubernetes.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">eBPF</span>
+          <span class="project-tag">Cilium</span>
+          <span class="project-tag">Tetragon</span>
+          <span class="project-tag">Kubernetes</span>
+          <span class="project-tag">Zero-Trust</span>
+          <span class="project-tag">Network Policy</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-banner" style="--banner-accent:rgba(230,82,44,0.14);--banner-fade:rgba(180,50,20,0.22);">
+          <img src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana" class="banner-icon" loading="lazy">
+          <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes" class="banner-icon" loading="lazy">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/amazonaws.svg" alt="AWS" class="banner-icon" loading="lazy" style="filter:invert(69%) sepia(98%) saturate(750%) hue-rotate(1deg) brightness(104%) contrast(101%)">
+        </div>
+        <div class="project-header">
+          <span class="project-icon">PROJECT_08</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <h3 class="project-title">Plateforme FinOps — Kubecost & OpenCost</h3>
+        <p class="project-desc">
+          Suivi des coûts cloud avec Kubecost/OpenCost, détection automatique des ressources
+          sur-dimensionnées et recommandations de bascule vers instances spot.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Kubecost</span>
+          <span class="project-tag">OpenCost</span>
+          <span class="project-tag">FinOps</span>
+          <span class="project-tag">Kubernetes</span>
+          <span class="project-tag">AWS Spot</span>
+          <span class="project-tag">Cost Optimization</span>
         </div>
       </div>
 
@@ -1540,14 +1622,14 @@
           <img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux" class="banner-icon" loading="lazy">
         </div>
         <div class="project-header">
-          <span class="project-icon">PROJECT_06</span>
+          <span class="project-icon">PROJECT_09</span>
           <span class="project-arrow">↗</span>
         </div>
         <h3 class="project-title">Déploiement SD-WAN Cisco Virtualisé</h3>
         <p class="project-desc">
           Infrastructure SD-WAN Cisco complète (vEdge, vSmart, vManage, vBond) déployée
-          automatiquement via scripts Shell sur QEMU/KVM + AlmaLinux, simulant une topologie
-          réseau multi-sites avec validation bout-en-bout.
+          automatiquement via scripts Shell sur QEMU/KVM + AlmaLinux, simulant une
+          topologie réseau multi-sites avec validation bout-en-bout.
         </p>
         <div class="project-tags">
           <span class="project-tag">Cisco SD-WAN</span>
@@ -1555,7 +1637,6 @@
           <span class="project-tag">Shell</span>
           <span class="project-tag">AlmaLinux</span>
           <span class="project-tag">Virtualisation</span>
-          <span class="project-tag">Réseau</span>
         </div>
       </div>
 
@@ -1565,7 +1646,7 @@
   <!-- GITHUB LIVE -->
   <section id="github">
     <div class="section-header reveal">
-      <span class="section-number">// Open Source</span>
+      <span class="section-number">04</span>
       <h2 class="section-title">GitHub</h2>
       <div class="section-line"></div>
     </div>
@@ -1577,7 +1658,7 @@
   <!-- SKILLS -->
   <section id="skills">
     <div class="section-header reveal">
-      <span class="section-number">04</span>
+      <span class="section-number">05</span>
       <h2 class="section-title">Stack technique</h2>
       <div class="section-line"></div>
     </div>
@@ -1641,6 +1722,10 @@
           <div class="skill-icon-item">
             <img src="https://cdn.simpleicons.org/ansible/EE0000" alt="Ansible" loading="lazy">
             <span>Ansible</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/backstage/9BF0E1" alt="Backstage" loading="lazy">
+            <span>Backstage</span>
           </div>
         </div>
       </div>
@@ -1744,6 +1829,10 @@
             <img src="https://cdn.simpleicons.org/git/F05032" alt="Git" loading="lazy">
             <span>Git</span>
           </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/php/777BB4" alt="PHP" loading="lazy">
+            <span>PHP</span>
+          </div>
         </div>
       </div>
 
@@ -1766,6 +1855,38 @@
             <img src="https://cdn.simpleicons.org/openvpn/EA7E20" alt="VPN" loading="lazy">
             <span>OpenVPN</span>
           </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/pfsense/212121" alt="pfSense" loading="lazy" style="filter:invert(75%) sepia(10%) saturate(200%) brightness(120%)">
+            <span>pfSense</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <h3>// DevSecOps & MLOps</h3>
+        <div class="skill-icon-grid">
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/trivy/1DA7CE" alt="Trivy" loading="lazy">
+            <span>Trivy</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@11/icons/sonarqube.svg" alt="SonarQube" loading="lazy" style="filter:invert(60%) sepia(60%) saturate(500%) hue-rotate(174deg) brightness(96%) contrast(101%)">
+            <span>SonarQube</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/cilium/F8C517" alt="Cilium" loading="lazy">
+            <span>Cilium / eBPF</span>
+          </div>
+          <div class="skill-icon-item">
+            <img src="https://cdn.simpleicons.org/mlflow/0194E2" alt="MLflow" loading="lazy">
+            <span>MLflow</span>
+          </div>
+          <div class="skill-icon-chip-row">
+            <span class="skill-chip">Kyverno</span>
+            <span class="skill-chip">Cosign</span>
+            <span class="skill-chip">OPA</span>
+            <span class="skill-chip">SOPS</span>
+          </div>
         </div>
       </div>
 
@@ -1775,7 +1896,7 @@
   <!-- EDUCATION -->
   <section id="education">
     <div class="section-header reveal">
-      <span class="section-number">05</span>
+      <span class="section-number">06</span>
       <h2 class="section-title">Formation & Certifications</h2>
       <div class="section-line"></div>
     </div>
